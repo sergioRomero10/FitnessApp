@@ -1,0 +1,59 @@
+.navbar-nav li::after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    background-color: rgb(222, 20, 37);
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .navbar-nav li:hover::after {
+    width: 100%;
+  }
+
+  .navbar-glow {
+    box-shadow: 0px 0px 25px rgb(222, 20, 37);
+  }
+  h1 {
+    text-align: center;
+    background: linear-gradient(to right,white, white);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-stroke: 2px rgb(222, 20, 37);
+    color: transparent;
+  }
+  #resultado{
+    margin-top: 2rem;
+    border: 2px solid rgb(222, 20, 37);
+    border-radius: 10px;
+    padding: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-size: large;
+}
+.animated-word{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.letter{
+  transition: 0.4s;
+  transform: translateX(0);
+  cursor:grab;
+  font-size: 
+  3em; text-align: center;
+  background: linear-gradient(to right,white, white);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-stroke: 2px rgb(222, 20, 37);
+  color: transparent;}
+.letter:hover{
+  transform: translateY(-1rem);
+  background: -webkit-linear-gradient(120deg,
+  rgb(222, 20, 37),rgb(222, 20, 37));
+  background-clip: white ;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#example {
+  font-size: 16px;
+}

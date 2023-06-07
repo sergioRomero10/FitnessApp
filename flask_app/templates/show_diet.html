@@ -1,0 +1,81 @@
+<!-- pagina que muestra la deita seleccionada de un usuario con sus comidas-->
+{% extends "index.html" %}
+
+{% block search %}
+{% if 'google_id' in session %}
+{% if message %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message }}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5">Diet {{selected_diet}}</h2>
+    <div class="row justify-content-center ">
+        {% if  diet_data|length == 0 %}
+        <p class="text-center">You don't have any favorite foods yet.</p>
+        {% else %}
+        <div class="col-md-8 ">
+            <table class="table table-hover text-white" >
+                <thead>
+                    <tr>
+                        <th scope="col">Food</th>
+                        <th scope="col">Quantity in grams</th>
+                        <th scope="col">Calories</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for doc in diet_data %}
+                    <tr>
+                        <!-- con el capitaloize se ve la primera letra en mayus-->
+                        <td>{{ doc.name.capitalize() }}</td>
+                        <td>{{ doc.quantity }} g</td>
+                        <td>{{ doc.cals }}</td>
+                        <td>
+                            <form action="{{ url_for('delete_food_diet_web') }}" method="POST">
+                                <input type="hidden" name="diet_id" value="{{ selected_diet }}">
+                                <input type="hidden" name="food_delete" value="{{ doc.name }}">
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                    <thead>
+                        <th>Total calories:</th>
+                        <th></th>
+                        <th>{{ total_cals }}</th>
+                        <th></th>
+                    </thead>
+            </table>
+        </div>
+        <!-- Agrega aquí el formulario para crear una dieta -->
+    <div class="row justify-content-center mb-5 ">
+        <div class="col-md-8 ">
+            <form action="{{ url_for('create_diet') }}" method="GET">
+                <button type="submit" class="btn btn-primary">Modify diet</button>
+            </form>
+            <br>
+            <form action="{{ url_for('add_food_menu') }}" method="GET">
+                <button type="submit" class="btn btn-primary">Add food</button>
+            </form>
+        </div>
+    </div>       
+        {% endif %}
+    </div>
+</div>
+{% else %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h2 class="mb-4">You must be registered to view this page.</h2>
+            <a href="{{ url_for('login') }}" class="btn btn-primary">Log in</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

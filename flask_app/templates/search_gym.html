@@ -1,0 +1,11 @@
+<!-- pagina que muestra buscador de gimnasios-->
+{% extends "index.html" %}
+
+{% block search %}
+<h1>Buscar gimnasios en España</h1>
+<form method="POST" action="/search_gyms">
+  <label for="city">Nombre de la ciudad:</label>
+  <input type="text" id="city" name="city" required>
+  <button type="submit">Buscar</button>
+</form>
+{% endblock %}

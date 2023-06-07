@@ -1,0 +1,70 @@
+<!-- pagina que muestra las comidas favoritas del usuario-->
+{% extends "index.html" %}
+
+{% block search %}
+{% if 'google_id' in session %}
+<!-- mensaje cuando hay una accion en alguna comida de favoritos-->
+{% if message %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message }}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-5">Favorite Foods</h2>
+    <div class="row justify-content-center ">
+        {% if  favs_foods|length == 0 %}
+        <p class="text-center">You don't have any favorite foods yet.</p>
+        {% else %}
+        <div class="col-md-8 ">
+            <table class="table table-hover text-white" >
+                <thead>
+                    <tr>
+                        <th scope="col">Food</th>
+                        <th scope="col">Calories per 100 grams</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- recorre las comidas favoritas del uusario mostrando su nombre y calorias por cada 100g-->
+                    {% for doc in favs_foods %}
+                    <tr>
+                        <!-- con el capitaloize se ve la primera letra en mayus-->
+                        <td>{{ doc.FoodItem.capitalize() }}</td>
+                        <td>{{ doc.Cals_per100grams }}</td>
+                        <td>
+                            <form action="{{ url_for('delete_fav_food') }}" method="POST">
+                                <input type="hidden" name="food_delete" value="{{ doc.FoodItem }}">
+                                <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    <!-- formulario para crear una dieta -->
+    <div class="row justify-content-center mb-5 ">
+        <div class="col-md-8 ">
+            <form action="{{ url_for('create_diet') }}" method="GET">
+                <button type="submit" class="btn btn-primary">Create Diet</button>
+            </form>
+        </div>
+    </div>       
+        {% endif %}
+    </div>
+</div>
+{% else %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h2 class="mb-4">You must be registered to view this page.</h2>
+            <a href="{{ url_for('login') }}" class="btn btn-primary">Log in</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,71 @@
+<!-- pagina que muestra las opciones que tiene el usuario de ver las dietas o para borrar dietas-->
+{% extends "index.html" %}
+
+{% block search %}
+{% if 'google_id' in session %}
+    {% if diets | length == 0%}
+    <p class="text-center">You don't have any diets yet.</p>
+    <a class="nav-link" href="/create_diet">Create diet</a>
+    {% else %}
+    {% if message %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">×</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="container mt-5">
+        <h2 class="text-center mb-5">Diets</h2>
+        <div class="row justify-content-center mb-3">
+            <div class="col-md-8">
+                <!-- Existing form to show diet -->
+                <form action="{{ url_for('show_diet') }}" method="POST">
+                    <div class="form-group">
+                        <label for="selected_diet">Select a diet:</label>
+                        <select class="form-control" id="selected_diet" name="selected_diet">
+                            {% for i in diets %}
+                            <option value="{{ i }}">Diet {{ i }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Show Diet</button>
+                </form>
+            </div>
+        </div>
+        <!-- New form to delete diet -->
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form action="{{ url_for('delete_diet') }}" method="POST">
+                    <div class="form-group">
+                        <label>Select a diet to delete:</label><br>
+                        {% for i in diets %}
+                            <div class="form-check">
+                                <input class="form-check-input" 
+                                       type="checkbox" 
+                                       name="diet_names" 
+                                       id="{{ i }}" 
+                                       value="{{ i }}">
+                                <label class="form-check-label" for="{{ i }}">
+                                    Diet {{ i }}
+                                </label>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <button type="submit" class="btn btn-danger">Delete Selected Diets</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% else %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <h2 class="mb-4">You must be registered to view this page.</h2>
+                <a href="{{ url_for('login') }}" class="btn btn-primary">Log in</a>
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

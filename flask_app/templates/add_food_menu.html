@@ -1,0 +1,56 @@
+<!-- pagina para añadir comida a dieta-->
+{% extends "index.html" %}
+
+{% block search %}
+{% if 'google_id' in session %}
+<div class="animated-word">
+    <div class="letter">F</div>
+    <div class="letter">I</div>
+    <div class="letter">T</div>
+    <div class="letter">N</div>
+    <div class="letter">E</div>
+    <div class="letter">S</div>
+    <div class="letter">S</div>
+    <div class="letter">A</div>
+    <div class="letter">P</div>
+    <div class="letter">P</div>
+</div>
+<h2>Add food to diet</h2>
+{% if message_diet %}
+<!-- mensaje cuando se añade dieta-->
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message_diet }}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+{% if message_food %}
+<!-- mensaje cuando se añade comida-->
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message_food }}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+<!-- formulario para añadir comida-->
+<form action="{{ url_for('add_food_to_diet') }}" method="POST">
+    <label for="diet_name">Diet Name:</label>
+    <input type="text" id="diet_name" name="diet_name" required>
+    <label for="name">Food name:</label>
+    <select name="food">
+        {% for food in favs_foods %}
+        <option value="{{ food.FoodItem}}">{{ food.FoodItem }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <label for="quantity">Amount of food:</label>
+    <input type="number" name="quantity" required>
+    <br>
+    <br>
+    <button type="submit">Add</button>
+</form>
+{% endif %}
+{% endblock %}

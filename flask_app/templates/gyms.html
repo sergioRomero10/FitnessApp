@@ -1,0 +1,17 @@
+<!-- pagina que la respuesta de 'search_gym'-->
+{% extends "index.html" %}
+
+{% block search %}
+  <h1>Centros deportivos en: </h1>
+  <p>Estos son los centros deportivos encontrados cerca de tu ubicación actual:</p>
+  <ul>
+    <!-- recorre los gimnasios devueltos por flask, mostrando los datos-->
+    {% for gym in gyms %}
+      <li>
+        <strong>{{ gym.name }}</strong><br>
+        {{ gym.address }}
+      </li>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

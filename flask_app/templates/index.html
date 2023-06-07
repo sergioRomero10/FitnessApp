@@ -1,0 +1,179 @@
+<!-- pagina principal de la cual extiendes todas las demas paginas-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FitnessApp</title>
+  <!-- Agregamos los enlaces a los archivos CSS de Bootstrap -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  <!-- Agregamos el enlace al archivo CSS personalizado -->
+  <link rel="stylesheet" href="/static/index.css">
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css" />
+</head>
+
+<body class="bg-secondary">
+  <!-- Agregamos el Navbar -->
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark navbar-glow">
+    <a class="navbar-brand" href="#navbarNav">
+      <img src="{{ url_for('static', filename='fitnessapp-low-resolution-logo-color-on-transparent-background.png') }}"
+        height="50px" width="75px" alt="Logo of my website" />
+    </a>
+    <a class="navbar-brand">
+      {% if 'google_id' in session %}
+      {% if session['google_picture'] %}
+      <!-- A veces no pilla bien la imagen de usuario si ocurre eso, se pone una imagen predeterminada-->
+      <img src="{{ session['google_picture'] }}" alt="Imagen de usuario" height="50px" width="50px" onerror="this.src='static/user-g6ce40d10e_1280.png';">
+      {% else %}
+      <img src="{{ url_for('static', filename='user-g6ce40d10e_1280.png') }}" height="50px" width="50px">
+      {% endif %}
+      {% if session['name'] %}
+      {{ session['name'] }}
+      {% endif %}
+      {% else %}
+      <img src="{{ url_for('static', filename='user-g6ce40d10e_1280.png') }}" height="50px" width="50px"> out session
+      {% endif %}
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact us</a>
+        </li>
+
+        {% if 'google_id' not in session %}
+        <li class="nav-item">
+          <a href="/redirect_to_login" class="btn btn-primary">Login</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/favorite_foods">Favorite foods</a>
+        <li class="nav-item">
+          <a class="nav-link" href="/create_diet">Create diet</a>
+        </li>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/show_options_diet">Show diets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/show_calendar">Calendar</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/search_gyms">Gyms</a>
+        </li>
+        <li class="nav-item">
+          <a href="/logout" class="btn btn-warning">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <div class="container mt-5 text-white ">
+    {% block search %}
+    <div class="animated-word">
+      <div class="letter">F</div>
+      <div class="letter">I</div>
+      <div class="letter">T</div>
+      <div class="letter">N</div>
+      <div class="letter">E</div>
+      <div class="letter">S</div>
+      <div class="letter">S</div>
+      <div class="letter">A</div>
+      <div class="letter">P</div>
+      <div class="letter">P</div>
+    </div>
+    <!-- Muestra mensajes al añadir comida a favoritos -->
+    {% if message %}
+      {% if message == "For this action you must be registered" %}
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+
+      {%  else %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      {% endif %}
+    {% endif %}
+    <div id="containerdatatable" class="container">
+      <table id="example" class="table table-hover text-white" style="width:100%">
+        <thead>
+          <tr>
+            <th>FoodCategory</th>
+            <th>FoodItem</th>
+            <th>Cals per 100 grams</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- recorre la collecion de comidas de la bd mostrando los datos de cada comida-->
+          {% for food in collectionFood %}
+          <tr>
+            <td style="font-size: 20px;">{{ food['FoodCategory'].capitalize() }}</td>
+            <td style="font-size: 20px;">{{ food['FoodItem'].title() }}</td>
+            <td style="font-size: 20px;">{{ food['Cals_per100grams']}}</td>
+            <td>
+              <form action="/add_favorite" method="POST">
+                <input type="hidden" name="food_name" value="{{ food['FoodItem'] }}">
+                <button type="submit" class="btn btn-outline-primary btn-sm ms-2 save-favorite" name="my-button"
+                  value="{{ food['FoodItem'] }}"><i class="bi bi-star"></i></button>
+              </form>
+
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endblock %}
+</body>
+<!-- Agregamos los enlaces a los archivos JavaScript de Bootstrap -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.3/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<!-- DataTables JS -->
+<script type="text/javascript" src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript" src="/static/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script>
+  /*
+  Script para que se carger bien la imagen del usuario
+  */
+  $(document).ready(function() {
+  // Obtener la URL de la imagen de la sesión
+  var imageUrl = "{{ session['google_picture'] }}";
+
+  // Crear el elemento img
+  var imgElement = $('<img>').attr({
+    src: imageUrl,
+    height: '50px',
+    width: '50px'
+  });
+
+  // Agregar la imagen al elemento con el id 'myImage'
+  $('#user_image').replaceWith(imgElement);
+});
+
+</script>
+</html>

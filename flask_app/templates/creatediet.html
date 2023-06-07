@@ -1,0 +1,69 @@
+<!-- pagina para crear o modificar dieta-->
+{% extends "index.html" %}
+
+{% block search %}
+{% if 'google_id' in session %}
+<div class="animated-word">
+    <div class="letter">F</div>
+    <div class="letter">I</div>
+    <div class="letter">T</div>
+    <div class="letter">N</div>
+    <div class="letter">E</div>
+    <div class="letter">S</div>
+    <div class="letter">S</div>
+    <div class="letter">A</div>
+    <div class="letter">P</div>
+    <div class="letter">P</div>
+</div>
+<h2>Add diet</h2>
+<!-- mensaje cuando se añade dieta-->
+{% if message_diet %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message_diet }}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+<!-- mensaje cuando se añade comida-->
+{% if message_food %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>{{ message_food }}</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+<!-- formulario para añadir o actualizar dieta-->
+<form action="{{ url_for('add_to_diet') }}" method="POST">
+    <label for="diet_name">Diet Name:</label>
+    <input type="text" id="diet_name" name="diet_name" required>
+    <label for="name">Food name:</label>
+    <select name="food">
+        {% for food in favs_foods %}
+        <option value="{{ food.FoodItem}}">{{ food.FoodItem }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    <br>
+    <label for="quantity">Amount of food:</label>
+    <input type="number" name="quantity" required>
+    <br>
+    <br>
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date" required pattern="\d{4}-\d{2}-\d{2}">
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date" required pattern="\d{4}-\d{2}-\d{2}">
+    <button type="submit">Add</button>
+</form>
+{% else %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h2 class="mb-4">You must be registered to view this page.</h2>
+            <a href="{{ url_for('login') }}" class="btn btn-primary">Log in</a>
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
