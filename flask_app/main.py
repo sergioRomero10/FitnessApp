@@ -533,7 +533,7 @@ def calculate_cals_food(food, quantity):
 
     # Devuelve un mensaje con el número de calorías totales como un string
     return str(total_calories)
-
+#Capta una excepción que se da a veces 
 @app.errorhandler(requests.exceptions.ConnectionError)
 def handle_connection_error(error):
     # Realizar acciones personalizadas, como recargar automáticamente la página
