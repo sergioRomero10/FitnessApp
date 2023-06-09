@@ -16,7 +16,7 @@ from pymongo import MongoClient
 import socket
 
 # Establecer el tiempo de espera por defecto en 10 segundos
-time.sleep(10)
+time.sleep(5)
 socket.setdefaulttimeout(10)
 #Me conecto a la bd
 client = MongoClient("mongodb://mongodb:27017/")
@@ -782,7 +782,7 @@ def search_gyms():
     if request.method == 'POST':
         city = request.form['city']
         print(city)
-        gyms = get_gym(city)
+        gyms = list(get_gym(city))
         print(gyms)
         return render_template('gyms.html', gyms=gyms)
     return render_template('search_gym.html')

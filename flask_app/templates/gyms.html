@@ -2,7 +2,10 @@
 {% extends "index.html" %}
 
 {% block search %}
-  <h1>Centros deportivos en: </h1>
+{% if gyms|length == 0 %}
+  <p>No hay gimnasios</p>
+{% else %}
+  <h1>Centros deportivos en:</h1>
   <p>Estos son los centros deportivos encontrados cerca de tu ubicación actual:</p>
   <ul>
     <!-- recorre los gimnasios devueltos por flask, mostrando los datos-->
@@ -13,5 +16,5 @@
       </li>
     {% endfor %}
   </ul>
-
+{% endif %}
 {% endblock %}

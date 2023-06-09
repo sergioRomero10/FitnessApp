@@ -7,8 +7,8 @@ import os
 
 from pymongo import MongoClient
 
-# Se hace una pausa de 30 segundos para esperar a que otros componentes consumidores estén listos
-#Quitar sleep
+# Se hace una pausa de 30 segundos para esperar a que otros componentes estén listos
+
 time.sleep(30)
 print("Empieza")
 
