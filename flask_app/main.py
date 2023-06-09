@@ -32,13 +32,15 @@ collectionUsers = db['Users']
 app = Flask("FitnessApp")
 
 # Se establece una clave secreta para la sesión de la aplicación
-app.secret_key = "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"
+#client_secret de client_secret.json
+app.secret_key = ""
 
 # Configuramos la variable de entorno para permitir conexiones HTTP inseguras
 os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
 
 # Configuramos el ID del cliente de Google
-GOOGLE_CLIENT_ID = "455533765980-7ts30kklc2kb1nf42iovn487mnqa5hai.apps.googleusercontent.com"
+#client_id de client_secret.json
+GOOGLE_CLIENT_ID = ""
 
 # Obtenemos la ruta del archivo JSON con las credenciales del cliente de Google
 client_secrets_file = os.path.join(
@@ -537,7 +539,7 @@ def calculate_cals_food(food, quantity):
 @app.errorhandler(requests.exceptions.ConnectionError)
 def handle_connection_error(error):
     # Realizar acciones personalizadas, como recargar automáticamente la página
-    return render_template('index.html')
+    return redirect("/protected_area")
 # Definimos la ruta de inicio de sesión
 @app.route("/login", methods=["GET", "POST"])
 def login():
