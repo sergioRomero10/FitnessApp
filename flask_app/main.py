@@ -534,6 +534,10 @@ def calculate_cals_food(food, quantity):
     # Devuelve un mensaje con el número de calorías totales como un string
     return str(total_calories)
 
+@app.errorhandler(requests.exceptions.ConnectionError)
+def handle_connection_error(error):
+    # Realizar acciones personalizadas, como recargar automáticamente la página
+    return render_template('index.html')
 # Definimos la ruta de inicio de sesión
 @app.route("/login", methods=["GET", "POST"])
 def login():

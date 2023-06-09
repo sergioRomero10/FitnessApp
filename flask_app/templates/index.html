@@ -93,6 +93,9 @@
       <div class="letter">A</div>
       <div class="letter">P</div>
       <div class="letter">P</div>
+      {% if reload_success %}
+        <p>La página se ha recargado automáticamente.</p>
+    {% endif %}
     </div>
     <!-- Muestra mensajes al añadir comida a favoritos -->
     {% if message %}
