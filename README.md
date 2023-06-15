@@ -3,10 +3,9 @@ Proyecto academico FitnessApp
 Configuración de Credenciales de Google Auth.
 Para el correcto funcionamiento del proyecto se debe configurar las credencailes de Google Auth. Google Auth es un servicio de autenticación y autorización que permite a los usuarios iniciar sesión en aplicaciones utilizando sus cuentas de Google.
 
-## 1º Ve al Google Cloud Console y asegúrate de haber iniciado sesión con la cuenta de 
+** 1º ** Ve al Google Cloud Console y asegúrate de haber iniciado sesión con la cuenta de 
 Google que deseas utilizar para autenticar tu aplicación.
-https://cloud.google.com/gcp/?hl=es&utm_source=google&utm_medium=cpc&utm_campaign=emea-es-all-es-drbkws-all-all-trial-b-gcp-1011340&utm_content=text-ad-none-any-DEV_c-CRE_654887467820-
-ADGP_Hybrid+%7C+BKWS+-+BRO+%7C+Txt+~+GCP+~+General%23v1-KWID_43700076003643598-kwd296993614710-userloc_9047045&utm_term=KW_console%20google%20cloud-NET_gPLAC_&&gad=1&gclid=CjwKCAjwm4ukBhAuEiwA0zQxk22fLgcU9Yvxugp2BQXqoZHOBFb3LtSICNoSuDqn4TKUMmJYnQ
+https://cloud.google.com/gcp/?hl=es&utm_source=google&utm_medium=cpc&utm_campaign=emea-es-all-es-drbkws-all-all-trial-b-gcp-1011340&utm_content=text-ad-none-any-DEV_c-CRE_654887467820-ADGP_Hybrid+%7C+BKWS+-+BRO+%7C+Txt+~+GCP+~+General%23v1-KWID_43700076003643598-kwd296993614710-userloc_9047045&utm_term=KW_console%20google%20cloud-NET_gPLAC_&&gad=1&gclid=CjwKCAjwm4ukBhAuEiwA0zQxk22fLgcU9Yvxugp2BQXqoZHOBFb3LtSICNoSuDqn4TKUMmJYnQ
 XM-xoCkkEQAvD_BwE&gclsrc=aw.ds
 
 ## 2º Crea un nuevo proyecto o selecciona un proyecto existente en el que desees 
