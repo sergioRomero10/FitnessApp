@@ -3,8 +3,7 @@ Proyecto academico FitnessApp
 Configuración de Credenciales de Google Auth.
 Para el correcto funcionamiento del proyecto se debe configurar las credencailes de Google Auth. Google Auth es un servicio de autenticación y autorización que permite a los usuarios iniciar sesión en aplicaciones utilizando sus cuentas de Google.
 
-**1º** Ve al [Google Cloud Console]([https://pages.github.com/](https://cloud.google.com/gcp/?hl=es&utm_source=google&utm_medium=cpc&utm_campaign=emea-es-all-es-drbkws-all-all-trial-b-gcp-1011340&utm_content=text-ad-none-any-DEV_c-CRE_654887467820-ADGP_Hybrid+%7C+BKWS+-+BRO+%7C+Txt+~+GCP+~+General%23v1-KWID_43700076003643598-kwd296993614710-userloc_9047045&utm_term=KW_console%20google%20cloud-NET_gPLAC_&&gad=1&gclid=CjwKCAjwm4ukBhAuEiwA0zQxk22fLgcU9Yvxugp2BQXqoZHOBFb3LtSICNoSuDqn4TKUMmJYnQ
-XM-xoCkkEQAvD_BwE&gclsrc=aw.ds)) y asegúrate de haber iniciado sesión con la cuenta de 
+**1º** Ve al [Google Cloud Console](https://www.googleadservices.com/pagead/aclk?sa=L&ai=DChcSEwj1pfODlMX_AhVwBwYAHX--CYkYABABGgJ3cw&ohost=www.google.com&cid=CAESauD2mt1fGWeMKMtXhUsRri7TisyQKIVLz8ZBUxM2WCtgMmQpqGUAxLhJW_TUvH0cveRQ6Hg748n3t63Ra8LeGs6-Bpma644b0RBRT0GkJi41pF_ypmh3T2GbhK3lp7SwJyYL1ewEOJXsQrg&sig=AOD64_2fqhzw_29vZnIY0NscfYUuujG2mg&q&adurl&ved=2ahUKEwiFgOyDlMX_AhW8V6QEHX5zAloQ0Qx6BAgJEAE) y asegúrate de haber iniciado sesión con la cuenta de 
 Google que deseas utilizar para autenticar tu aplicación.
 
 
