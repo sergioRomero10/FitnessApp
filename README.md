@@ -39,5 +39,7 @@ obtener el archivo client_secret.json.
 mismo nombre, reemplazando mis datos por los tuyos.
 En el main de Flask_app deberas pegar los siguientes valores del secret_client.json 
 que te descargues
+
 app.secret_key = "client_secret de client_secret.json"
+
 GOOGLE_CLIENT_ID = “client_id de client_secret.json”
