@@ -13,8 +13,10 @@ habilitar la autenticación de Google.
 
 **3º** Dentro del proyecto, ve al menú de navegación y selecciona "API y servicios" y 
 luego "Credenciales".
+
 **4º** Haz clic en el botón "Crear credenciales" y selecciona "ID de cliente OAuth" en el 
 menú desplegable.
+
 **5º** En la siguiente pantalla, elige el tipo de aplicación que estás desarrollando. Por 
 ejemplo, si estás desarrollando una aplicación de servidor, selecciona "Aplicación 
 web" o "Servidor".
@@ -28,6 +30,7 @@ http://localhost/callback
 
 **7º** Una vez que hayas completado la configuración, haz clic en el botón "Crear" para 
 generar las credenciales de OAuth.
+
 **8º** Verás una pantalla con tus credenciales recién creadas, incluyendo el ID de cliente 
 y el secreto de cliente. Haz clic en el ícono de descarga junto al ID de cliente para 
 obtener el archivo client_secret.json.
