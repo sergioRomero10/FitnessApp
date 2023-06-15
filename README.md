@@ -19,7 +19,7 @@ menú desplegable.
 
 **5º** En la siguiente pantalla, elige el tipo de aplicación que estás desarrollando. Por 
 ejemplo, si estás desarrollando una aplicación de servidor, selecciona "Aplicación 
-web" o "Servidor".
+web" o "Servidor". En este caso, Aplicación web.
 
 **6º** Completa la configuración de la aplicación proporcionando la información 
 requerida, como el nombre de la aplicación, las URL de redireccionamiento 
