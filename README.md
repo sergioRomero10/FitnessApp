@@ -25,7 +25,7 @@ web" o "Servidor". En este caso, Aplicación web.
 requerida, como el nombre de la aplicación, las URL de redireccionamiento 
 autorizadas, etc.
 Borras la uri de Orígenes autorizados de JavaScript.
-En la parte de URI de redireccionamiento autorizados deberás colocar la siguiente:
+Pero en la parte de URI de redireccionamiento autorizados deberás colocar la siguiente:
 http://localhost/callback
 
 **7º** Una vez que hayas completado la configuración, haz clic en el botón "Crear" para 
